@@ -48,7 +48,7 @@
 
    ["/ping"
     {:get (constantly (ok {:message "pong"}))}]
-   
+
 
    ["/math"
     {:swagger {:tags ["math"]}}
@@ -56,16 +56,60 @@
     ["/plus"
      {:get {:summary "plus with spec query parameters"
             :parameters {:query {:x int?, :y int?}}
-            :responses {200 {:body {:total pos-int?}}}
+            :responses {200 {:body {:total int?}}}
             :handler (fn [{{{:keys [x y]} :query} :parameters}]
                        {:status 200
                         :body {:total (+ x y)}})}
       :post {:summary "plus with spec body parameters"
              :parameters {:body {:x int?, :y int?}}
-             :responses {200 {:body {:total pos-int?}}}
+             :responses {200 {:body {:total int?}}}
              :handler (fn [{{{:keys [x y]} :body} :parameters}]
                         {:status 200
-                         :body {:total (+ x y)}})}}]]
+                         :body {:total (+ x y)}})}}]
+
+    ["/minus"
+     {:get {:summary "minus with spec query parameters"
+            :parameters {:query {:x int?, :y int?}}
+            :responses {200 {:body {:total int?}}}
+            :handler (fn [{{{:keys [x y]} :query} :parameters}]
+                       {:status 200
+                        :body {:total (- x y)}})}
+      :post {:summary "minus with spec body parameters"
+             :parameters {:body {:x int?, :y int?}}
+             :responses {200 {:body {:total int?}}}
+             :handler (fn [{{{:keys [x y]} :body} :parameters}]
+                        {:status 200
+                         :body {:total (- x y)}})}}]
+    ["/mult"
+     {:get {:summary "mult with spec query parameters"
+            :parameters {:query {:x int?, :y int?}}
+            :responses {200 {:body {:total int?}}}
+            :handler (fn [{{{:keys [x y]} :query} :parameters}]
+                       {:status 200
+                        :body {:total (* x y)}})}
+      :post {:summary "mult with spec body parameters"
+             :parameters {:body {:x int?, :y int?}}
+             :responses {200 {:body {:total int?}}}
+             :handler (fn [{{{:keys [x y]} :body} :parameters}]
+                        {:status 200
+                         :body {:total (* x y)}})}}]
+
+    ["/div"
+     {:get {:summary "div with spec query parameters"
+            :parameters {:query {:x int?, :y int?}}
+            :responses {200 {:body {:total float?}}}
+            :handler (fn [{{{:keys [x y]} :query} :parameters}]
+                       {:status 200
+                        :body {:total (float (/ x y))}})}
+      :post {:summary "div with spec body parameters"
+             :parameters {:body {:x int?, :y int?}}
+             :responses {200 {:body {}}}
+             :handler (fn [{{{:keys [x y]} :body} :parameters}]
+                        {:status 200
+                         :body {:total (/ x y)}})}}]
+
+
+    ]
 
    ["/files"
     {:swagger {:tags ["files"]}}

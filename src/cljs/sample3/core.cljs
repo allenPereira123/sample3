@@ -48,6 +48,20 @@
                  [nav-link "#/" "Home" :home]
                  [nav-link "#/about" "About" :about]]]]))
 
+
+(defn button [[symbol url]]
+  [:button.button.is-primary {:on-click (fn [e]
+                                          (rf/dispatch [:request (str "http://localhost:3000/api/math/" url) symbol]))}
+   symbol]
+  )
+(defn operations []
+  [:div
+   [:label.label "Operators"]
+   [:div.buttons
+    (for [operator @(rf/subscribe [:operations])]
+      [button operator])
+    ]])
+
 (defn about-page []
   [:section.section>div.container>div.content
    [:img {:src "/img/warning_clojure.png"}]])
@@ -58,6 +72,7 @@
       [:div.box
        [input-field :x (rf/subscribe [:form])]
        [input-field :y (rf/subscribe [:form])]
+       [operations]
        ]
       ])
 

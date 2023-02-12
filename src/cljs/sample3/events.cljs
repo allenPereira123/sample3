@@ -28,6 +28,22 @@
                                  (rfc/apply-controllers (:controllers old-match) match))]
       (assoc db :common/route new-match))))
 
+(rf/reg-event-db
+  :process-response
+  (fn [db [_ symbol response]]
+    (assoc-in db [:equations] (conj (:equations db) (conj (:form db) response {:operator symbol})))))
+(rf/reg-event-fx
+  :request
+  (fn [{:keys [db]} [_ url symbol]]
+    {:http-xhrio {:method          :get
+                  :uri             url
+                  :params          {:x (get-in db [:form :x]) :y (get-in db [:form :y])}
+                  :format          (ajax/json-request-format)
+                  :response-format (ajax/json-response-format {:keywords? true})
+                  :on-success      [:process-response symbol]
+                  :on-failure      [:bad-response]}}
+    ))
+
 (rf/reg-fx
   :common/navigate-fx!
   (fn [[k & [params query]]]
@@ -71,6 +87,11 @@
   :common/route
   (fn [db _]
     (-> db :common/route)))
+
+(rf/reg-sub
+  :operations
+  (fn [db _]
+    (:operations db)))
 
 (rf/reg-sub
   :common/page-id

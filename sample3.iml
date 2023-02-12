@@ -25,7 +25,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: binaryage/devtools:1.0.6" level="project" />
     <orderEntry type="library" name="Leiningen: borkdude/dynaload:0.2.2" level="project" />
-    <orderEntry type="library" name="Leiningen: borkdude/edamame:0.0.19" level="project" />
+    <orderEntry type="library" name="Leiningen: borkdude/edamame:0.0.11-alpha.12" level="project" />
     <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-classic:1.4.4" level="project" />
     <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-core:1.4.4" level="project" />
     <orderEntry type="library" name="Leiningen: cheshire:5.10.0" level="project" />
@@ -35,6 +35,8 @@
     <orderEntry type="library" name="Leiningen: clj-stacktrace:0.2.8" level="project" />
     <orderEntry type="library" name="Leiningen: clj-tuple:0.2.2" level="project" />
     <orderEntry type="library" name="Leiningen: cljs-ajax:0.8.4" level="project" />
+    <orderEntry type="library" name="Leiningen: cljsjs/highlight:10.3.1-0" level="project" />
+    <orderEntry type="library" name="Leiningen: clojure-future-spec:1.9.0" level="project" />
     <orderEntry type="library" name="Leiningen: clojure.java-time:1.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: com.andrewmcveigh/cljs-time:0.5.2" level="project" />
     <orderEntry type="library" name="Leiningen: com.bhauman/cljs-test-display:0.1.1" level="project" />
@@ -58,6 +60,7 @@
     <orderEntry type="library" name="Leiningen: com.google.j2objc/j2objc-annotations:1.3" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.javascript/closure-compiler-unshaded:v20220803" level="project" />
     <orderEntry type="library" name="Leiningen: com.googlecode.json-simple/json-simple:1.1.1" level="project" />
+    <orderEntry type="library" name="Leiningen: com.yahoo.platform.yui/yuicompressor:2.4.8" level="project" />
     <orderEntry type="library" name="Leiningen: commons-codec:1.15" level="project" />
     <orderEntry type="library" name="Leiningen: commons-fileupload:1.4" level="project" />
     <orderEntry type="library" name="Leiningen: commons-io:2.11.0" level="project" />
@@ -66,6 +69,9 @@
     <orderEntry type="library" name="Leiningen: crypto-equality:1.0.1" level="project" />
     <orderEntry type="library" name="Leiningen: crypto-random:1.2.1" level="project" />
     <orderEntry type="library" name="Leiningen: day8.re-frame/http-fx:0.2.4" level="project" />
+    <orderEntry type="library" name="Leiningen: day8.re-frame/re-frame-10x:1.2.2" level="project" />
+    <orderEntry type="library" name="Leiningen: day8.re-frame/tracing-stubs:0.5.3" level="project" />
+    <orderEntry type="library" name="Leiningen: day8.re-frame/tracing:0.6.2" level="project" />
     <orderEntry type="library" name="Leiningen: expiring-map:0.1.9" level="project" />
     <orderEntry type="library" name="Leiningen: expound:0.9.0" level="project" />
     <orderEntry type="library" name="Leiningen: fipp:0.6.26" level="project" />
@@ -164,11 +170,11 @@
     <orderEntry type="library" name="Leiningen: potemkin:0.4.5" level="project" />
     <orderEntry type="library" name="Leiningen: prismatic/schema:1.1.12" level="project" />
     <orderEntry type="library" name="Leiningen: prone:2021-04-23" level="project" />
-    <orderEntry type="library" name="Leiningen: re-com:2.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: re-frame:1.2.0" level="project" />
-    <orderEntry type="library" name="Leiningen: re-frisk:1.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: reagent:1.1.1" level="project" />
     <orderEntry type="library" name="Leiningen: realize:2019-04-24" level="project" />
+    <orderEntry type="library" name="Leiningen: rewrite-clj:0.6.1" level="project" />
+    <orderEntry type="library" name="Leiningen: rewrite-cljs:0.4.5" level="project" />
     <orderEntry type="library" name="Leiningen: riddley:0.1.12" level="project" />
     <orderEntry type="library" name="Leiningen: ring-webjars:0.2.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-anti-forgery:1.3.0" level="project" />
@@ -180,6 +186,7 @@
     <orderEntry type="library" name="Leiningen: ring/ring-mock:0.4.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-ssl:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: selmer:1.12.55" level="project" />
+    <orderEntry type="library" name="Leiningen: superstructor/re-highlight:1.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: tech.droit/clj-diff:1.0.1" level="project" />
     <orderEntry type="library" name="Leiningen: thheller/shadow-client:1.3.3" level="project" />
     <orderEntry type="library" name="Leiningen: thheller/shadow-cljs:2.20.3" level="project" />
@@ -187,5 +194,6 @@
     <orderEntry type="library" name="Leiningen: thheller/shadow-undertow:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: thheller/shadow-util:0.7.0" level="project" />
     <orderEntry type="library" name="Leiningen: tigris:0.1.2" level="project" />
+    <orderEntry type="library" name="Leiningen: zprint:1.0.1" level="project" />
   </component>
 </module>

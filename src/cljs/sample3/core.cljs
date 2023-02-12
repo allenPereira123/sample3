@@ -20,6 +20,18 @@
     :class (when (= page @(rf/subscribe [:common/page-id])) :is-active)}
    title])
 
+
+
+(defn input-field [key form-data]
+  [:div.field
+   [:label.label "Operand"]
+   [:div.control
+    [:input.input.is-primary
+     {:style {:margin-bottom "15px"}
+      :type "number"
+      :value (key @form-data)
+      :on-change #(rf/dispatch [:update-form key (js/parseInt (-> % .-target .-value))])}]]])
+
 (defn navbar [] 
   (r/with-let [expanded? (r/atom false)]
               [:nav.navbar.is-info>div.container
@@ -41,9 +53,15 @@
    [:img {:src "/img/warning_clojure.png"}]])
 
 (defn home-page []
-  [:section.section>div.container>div.content
-   (when-let [docs @(rf/subscribe [:docs])]
-     [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
+   (fn []
+     [:div {:style {:margin "50px" :width "350px"}}
+      [:div.box
+       [input-field :x (rf/subscribe [:form])]
+       [input-field :y (rf/subscribe [:form])]
+       ]
+      ])
+
+   )
 
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]
@@ -72,7 +90,8 @@
 ;; Initialize app
 (defn ^:dev/after-load mount-components []
   (rf/clear-subscription-cache!)
-  (rdom/render [#'page] (.getElementById js/document "app")))
+  (rdom/render [#'page] (.getElementById js/document "app"))
+  (rf/dispatch [:initialize-db]))
 
 (defn init! []
   (start-router!)

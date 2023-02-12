@@ -8,6 +8,19 @@
 ;;dispatchers
 
 (rf/reg-event-db
+  :initialize-db
+  (fn [db _]
+    (-> db
+        (assoc :equations [])
+        (assoc :operations [["+" "plus"] ["-" "minus"] ["*" "mult"] ["/" "div"]])
+        (assoc :form {})
+        )))
+
+(rf/reg-event-db
+  :update-form
+  (fn [db [_ key val]]
+    (assoc-in db [:form key] val)))
+(rf/reg-event-db
   :common/navigate
   (fn [db [_ match]]
     (let [old-match (:common/route db)
@@ -50,6 +63,10 @@
 
 ;;subscriptions
 
+(rf/reg-sub
+  :form
+  (fn [db _]
+    (:form db)))
 (rf/reg-sub
   :common/route
   (fn [db _]

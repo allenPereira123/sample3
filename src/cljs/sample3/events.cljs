@@ -32,6 +32,11 @@
   :process-response
   (fn [db [_ symbol response]]
     (assoc-in db [:equations] (conj (:equations db) (conj (:form db) response {:operator symbol})))))
+
+(rf/reg-event-fx
+  :bad-response
+  (fn [_ _]
+    {:invalid-operands nil}))
 (rf/reg-event-fx
   :request
   (fn [{:keys [db]} [_ url symbol]]
@@ -44,6 +49,10 @@
                   :on-failure      [:bad-response]}}
     ))
 
+(rf/reg-fx
+  :invalid-operands
+  (fn [_]
+    (js/alert "invalid operands")))
 (rf/reg-fx
   :common/navigate-fx!
   (fn [[k & [params query]]]

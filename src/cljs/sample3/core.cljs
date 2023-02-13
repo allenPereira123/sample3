@@ -68,9 +68,10 @@
    [:img {:src "/img/warning_clojure.png"}]])
 
 
+(def color-map {:red "#FF0000" :green "#90EE90" :blue "#ADD8E6" :orange "#FFA07A"})
 (defn setColor [total]
-  (if (< total 0 ) "#FF0000"
-                   (if (<= total 19) "#90EE90" (if (<= total 49) "#ADD8E6" "#FFA07A"))))
+  (if (< total 0 ) (:red color-map)
+                   (if (<= total 19) (:green color-map) (if (<= total 49) (:blue color-map) (:orange color-map)))))
 (defn list-item [{:keys [x y operator total]}]
   [:li {:style {:list-style-type "circle" :color (setColor total)}} x  " " operator " " y " = " (str total)])
 (defn equation []
@@ -81,17 +82,14 @@
       [list-item item])]])
 
 (defn home-page []
-   (fn []
-     [:div {:style {:margin "50px" :width "350px"}}
-      [:div.box
-       [input-field :x (rf/subscribe [:form])]
-       [input-field :y (rf/subscribe [:form])]
-       [operations]
-       [equation]
-       ]
-      ])
-
-   )
+    (let [form (rf/subscribe [:form])]
+      (fn []
+        [:div {:style {:margin "50px" :width "350px"}}
+        [:div.box
+        [input-field :x form]
+        [input-field :y form]
+        [operations]
+        [equation]]])))
 
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]

@@ -80,6 +80,10 @@
 ;;subscriptions
 
 (rf/reg-sub
+  :equations
+  (fn [db _]
+    (:equations db)))
+(rf/reg-sub
   :form
   (fn [db _]
     (:form db)))

@@ -49,6 +49,7 @@
                  [nav-link "#/about" "About" :about]]]]))
 
 
+
 (defn button [[symbol url]]
   [:button.button.is-primary {:on-click (fn [e]
                                           (rf/dispatch [:request (str "http://localhost:3000/api/math/" url) symbol]))}
@@ -66,6 +67,19 @@
   [:section.section>div.container>div.content
    [:img {:src "/img/warning_clojure.png"}]])
 
+
+(defn setColor [total]
+  (if (< total 0 ) "#FF0000"
+                   (if (<= total 19) "#90EE90" (if (<= total 49) "#ADD8E6" "#FFA07A"))))
+(defn list-item [{:keys [x y operator total]}]
+  [:li {:style {:list-style-type "circle" :color (setColor total)}} x  " " operator " " y " = " (str total)])
+(defn equation []
+  [:div {:style {:margin-top "10px"}}
+   [:label.label "Equations"]
+   [:ul {:style {:margin-left "15px"}}
+    (for [item @(rf/subscribe [:equations])]
+      [list-item item])]])
+
 (defn home-page []
    (fn []
      [:div {:style {:margin "50px" :width "350px"}}
@@ -73,6 +87,7 @@
        [input-field :x (rf/subscribe [:form])]
        [input-field :y (rf/subscribe [:form])]
        [operations]
+       [equation]
        ]
       ])
 
@@ -106,9 +121,10 @@
 (defn ^:dev/after-load mount-components []
   (rf/clear-subscription-cache!)
   (rdom/render [#'page] (.getElementById js/document "app"))
-  (rf/dispatch [:initialize-db]))
+  )
 
 (defn init! []
   (start-router!)
   (ajax/load-interceptors!)
-  (mount-components))
+  (mount-components)
+  (rf/dispatch [:initialize-db]))

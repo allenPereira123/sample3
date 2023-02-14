@@ -66,12 +66,12 @@
 
 (rf/reg-event-db
   :set-docs
-  (fn-traced [db [_ docs]]
+  (fn [db [_ docs]]
     (assoc db :docs docs)))
 
 (rf/reg-event-fx
   :fetch-docs
-  (fn [_ _]
+  (fn-traced [_ _]
     {:http-xhrio {:method          :get
                   :uri             "/docs"
                   :response-format (ajax/raw-response-format)

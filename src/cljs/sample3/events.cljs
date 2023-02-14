@@ -32,7 +32,7 @@
 (rf/reg-event-db
   :process-response
   (fn-traced [db [_ symbol response]]
-    (assoc-in db [:equations] (conj (:equations db) (conj (:form db) response {:operator symbol})))))
+    (assoc-in db [:equations (count (:equations db))]  (conj (:form db) response {:operator symbol}))))
 
 (rf/reg-event-fx
   :bad-response
@@ -128,3 +128,31 @@
   :common/error
   (fn [db _]
     (:common/error db)))
+
+
+(comment
+
+  (def m {:v [{:x 1} {:x 2}]})
+
+  (assoc-in m [:v 2] {:x 3})
+
+    (count [1 2])
+
+  ())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

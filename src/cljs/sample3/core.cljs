@@ -124,5 +124,6 @@
 (defn init! []
   (start-router!)
   (ajax/load-interceptors!)
+  (rf/dispatch [:initialize-db])
   (mount-components)
-  (rf/dispatch [:initialize-db]))
+  )

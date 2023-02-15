@@ -14,6 +14,8 @@
     [clojure.string :as string])
   (:import goog.History))
 
+; Comment block on
+
 (defn nav-link [uri title page]
   [:a.navbar-item
    {:href   uri

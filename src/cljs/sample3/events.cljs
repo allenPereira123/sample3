@@ -14,7 +14,7 @@
     (-> db
         (assoc :equations [])
         (assoc :operations [["+" "plus"] ["-" "minus"] ["*" "mult"] ["/" "div"]])
-        (assoc :form {})
+        (assoc :form {:x 0 :y 0})
         )))
 
 (rf/reg-event-db
@@ -37,7 +37,7 @@
 (rf/reg-event-fx
   :bad-response
   (fn-traced [_ _]
-    {:invalid-operands nil}))
+    {:bad-response nil}))
 (rf/reg-event-fx
   :request
   (fn-traced [{:keys [db]} [_ url symbol]]
@@ -51,9 +51,9 @@
     ))
 
 (rf/reg-fx
-  :invalid-operands
+  :bad-response
   (fn [_]
-    (js/alert "invalid operands")))
+    (js/alert "bad response")))
 (rf/reg-fx
   :common/navigate-fx!
   (fn [[k & [params query]]]

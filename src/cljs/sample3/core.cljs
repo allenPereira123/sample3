@@ -54,7 +54,10 @@
 
 (defn button [[symbol url]]
   [:button.button.is-primary {:on-click (fn [e]
-                                          (rf/dispatch [:request (str "http://localhost:3000/api/math/" url) symbol]))}
+                                          (let [{:keys [x y]} @(rf/subscribe [:form])]
+                                            (if (or (js/isNaN x) (js/isNaN y))
+                                              (js/alert "Invalid Operand/s")
+                                              (rf/dispatch [:request (str "http://localhost:3000/api/math/" url) symbol]))))}
    symbol]
   )
 (defn operations []

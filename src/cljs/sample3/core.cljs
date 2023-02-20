@@ -65,8 +65,7 @@
    [:label.label "Operators"]
    [:div.buttons
     (for [operator @(rf/subscribe [:operations])]
-      ^{:key operator}[button operator])
-    ]])
+      ^{:key operator}[button operator])]])
 
 (defn about-page []
   [:section.section>div.container>div.content

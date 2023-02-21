@@ -9,7 +9,9 @@
     [reitit.ring.middleware.parameters :as parameters]
     [sample3.middleware.formats :as formats]
     [ring.util.http-response :refer :all]
-    [clojure.java.io :as io]))
+    [clojure.java.io :as io]
+    [ring.middleware.cors :refer [wrap-cors]]
+    ))
 
 (defn service-routes []
   ["/api"
@@ -54,7 +56,10 @@
     {:swagger {:tags ["math"]}}
 
     ["/plus"
-     {:get {:summary "plus with spec query parameters"
+     {:middleware [[wrap-cors
+                    :access-control-allow-origin [#"http://localhost:4500"]
+                    :access-control-allow-methods [:get :post]]]
+      :get {:summary "plus with spec query parameters"
             :parameters {:query {:x int?, :y int?}}
             :responses {200 {:body {:total int?}}}
             :handler (fn [{{{:keys [x y]} :query} :parameters}]
@@ -68,7 +73,10 @@
                          :body {:total (+ x y)}})}}]
 
     ["/minus"
-     {:get {:summary "minus with spec query parameters"
+     {:middleware [[wrap-cors
+                    :access-control-allow-origin [#"http://localhost:4500"]
+                    :access-control-allow-methods [:get :post]]]
+      :get {:summary "minus with spec query parameters"
             :parameters {:query {:x int?, :y int?}}
             :responses {200 {:body {:total int?}}}
             :handler (fn [{{{:keys [x y]} :query} :parameters}]
@@ -81,7 +89,10 @@
                         {:status 200
                          :body {:total (- x y)}})}}]
     ["/mult"
-     {:get {:summary "mult with spec query parameters"
+     {:middleware [[wrap-cors
+                    :access-control-allow-origin [#"http://localhost:4500"]
+                    :access-control-allow-methods [:get :post]]]
+      :get {:summary "mult with spec query parameters"
             :parameters {:query {:x int?, :y int?}}
             :responses {200 {:body {:total int?}}}
             :handler (fn [{{{:keys [x y]} :query} :parameters}]
@@ -95,7 +106,10 @@
                          :body {:total (* x y)}})}}]
 
     ["/div"
-     {:get {:summary "div with spec query parameters"
+     {:middleware [[wrap-cors
+                    :access-control-allow-origin [#"http://localhost:4500"]
+                    :access-control-allow-methods [:get :post]]]
+      :get {:summary "div with spec query parameters"
             :parameters {:query {:x int?, :y int?}}
             :responses {200 {:body {:total float?}}}
             :handler (fn [{{{:keys [x y]} :query} :parameters}]
